@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         mWebView = findViewById(R.id.activity_main_webview);
         mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.setWebViewClient(new GameWebViewClient());
 
         mWebView.loadUrl("file:///android_asset/www/index.html");
     }
