@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
+    <script src="js/lib/template7.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <!-- <script src="js/lib/Winwheel.js"></script>
+    <script src="js/lib/TweenMax.min.js"></script>
+    <script src="js/wheelOfFortune.js"></script> -->
+    <script src="js/dice_template/rollingDice.js"></script>
+    <script src="js/audioMain.js"></script>
+    <script src="js/template_base/main.js"></script>
+    <script src="js/transfertobank_template/transferToBankConfig.js"></script>
+    <script src="js/payoff_template/payOffConfig.js"></script>
+    <script src="js/popup_template/popupConfig.js"></script>
+    <script src="js/week_summary_template/weekSummaryConfig.js"></script>
+    <script src="js/purchase_template/purchaseConfig.js"></script>
+    <script src="js/help_template/helpConfig.js"></script>
+    <script src="js/quiz_template/quizConfig.js"></script>
+    <script src="js/quiz_template/quizStarterConfig.js"></script>
+    <script src="js/payment_template/paymentConfig.js"></script>
+    <script src="js/withdrawfrombank_template/withdrawFromBankConfig.js"></script>
+    <script src="js/monopoly_base/sideScoreBoardConfig.js"></script>
+    <script src="js/luck_template/luckConfig.js"></script>
+    <script src="js/sales_template/salesConfig.js"></script>
+    <script src="js/decision_template/decisionConfig.js"></script>
+    <script src="js/advantagecard_template/advantageCardConfig.js"></script>
+    <script src="js/monopoly_base/mainMonopoly.js"></script>
+    <script src="js/template_base/templates.js"></script>
+    <script src="js/monopoly_base/templateMonopoly.js"></script>
+    <script src="js/template_base/config.js"></script>
+    <script src="js/static_template/staticMain.js"></script>
+    <script src="js/sales_template/salesMain.js"></script>
+    <script src="js/luck_template/luckMain.js"></script>
+    <script src="js/purchase_template/purchaseMain.js"></script>
+    <script src="js/payment_template/paymentMain.js"></script>
+    <script src="js/dice_template/rollingdiceMain.js"></script>
+    <script src="js/week_summary_template/weekSummaryMain.js"></script>
+    <script src="js/payoff_template/payOffMain.js"></script>
+    <script src="js/help_template/helpMain.js"></script>
+    <script src="js/quiz_template/quizMain.js"></script>
+    <script src="js/quiz_template/quizStarterMain.js"></script>
+    <script src="js/popup_template/popupMain.js"></script>
+    <script src="js/insurance_template/insuranceMain.js"></script>
+    <script src="js/decision_template/decisionMain.js"></script>
+    <script src="js/advantagecard_template/advantageCardMain.js"></script>
+    <script src="js/withdrawfrombank_template/withdrawFromBankMain.js"></script>
+    <script src="js/transfertobank_template/transferToBankMain.js"></script>
+    <script src="js/monopoly_base/configMonopoly.js"></script>
+    <!--<script src="js/scratchCardLib.js"></script>
+    <script src="js/scratchCard.js"></script>   -->
+    <script src="js/models/user.js"></script>
+    <script src="js/models/scenario.js"></script>
+    <script src="js/calculator.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" href="css/rollingDice.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/scratch.css">
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/insurance.css">
+    <link rel="stylesheet" href="css/decisionMaking.css">
+    <link rel="stylesheet" href="css/slideBar.css">
+    <link rel="stylesheet" href="css/sideTabs.css">
+    <link rel="stylesheet" href="css/receipt.css">
+    <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="css/longButton.css">
+    <link rel="stylesheet" type="text/css" href="css/quiz.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css"/> -->
+</head>
+
+<body background="images/background.png" style="font-family: 'Open Sans', Arial, sans-serif;     font-weight: bold;     font-size: 1.3vmax;color:black;">
+
+<div id="popupBackground" style="display:none;position:absolute;top:0px;left:0px;z-index: 996;opacity: 0.95;background-color: rgb(105,105,105);;height: 100%;width: 100%;"></div>
+
+<div id="resultBackground" style="display:none;position:absolute;top:0px;left:0px;z-index: 9;opacity: 0.95;background-color: rgb(105,105,105);;height: 100%;width: 100%;"></div>
+
+<div id="helpBase" class="container-fluid"
+     style="position:relative;z-index:1000;margin:0px; margin-left: 0px; margin-right: 0px; padding: 0px;">
+    <div id="helpContent"
+         style="height:0; transition: height 0.5s;position: absolute;margin:0px;background-color:	rgb(105,105,105); opacity: 0.0;">
+
+    </div>
+</div>
+
+<div id="templateBase" class="container-fluid"
+     style="position:relative;z-index:0;margin:0px; margin-left: 0px; margin-right: 0px; padding: 0px;  ">
+    <div id="templateContent"
+         style="height:0; transition: height 0.5s;position: absolute;margin:0px;background-color:	rgb(105,105,105); opacity: 0.0;">
+
+
+    </div>
+
+</div>
+
+<div id="monopolyBase" class="container-fluid" style="height: 100vh;width: 100vw;">
+
+</div>
+
+</body>
+
+<html>
