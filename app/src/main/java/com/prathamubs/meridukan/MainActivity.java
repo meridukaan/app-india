@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new GameWebViewClient());
 
+        mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
+
         mWebView.loadUrl("file:///android_asset/www/index.html");
     }
 }
