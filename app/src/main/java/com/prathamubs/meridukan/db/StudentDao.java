@@ -7,10 +7,10 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 @Dao
-public interface ScoreDao extends Insertable<Score> {
+public interface StudentDao extends Insertable<Student> {
     @Insert
-    void insert(Score score);
+    void insert(Student student);
 
-    @Query("SELECT * from Scores")
-    List<Score> getAll();
+    @Query("SELECT * from Student")
+    List<Student> getAll();
 }
