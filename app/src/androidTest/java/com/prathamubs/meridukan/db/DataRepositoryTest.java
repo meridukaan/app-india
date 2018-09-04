@@ -28,7 +28,7 @@ public class DataRepositoryTest {
         database = Room.inMemoryDatabaseBuilder(context, AppDatabase.class)
                 .allowMainThreadQueries()
                 .build();
-        repository = new DataRepository(context, database);
+        repository = new DataRepository(database);
     }
 
     @After

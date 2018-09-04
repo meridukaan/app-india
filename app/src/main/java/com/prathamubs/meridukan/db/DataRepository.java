@@ -7,13 +7,13 @@ public class DataRepository {
     private ScoreDao mScoreDao;
     private StudentDao mStudentDao;
 
-    public DataRepository(Context context, AppDatabase db) {
+    protected DataRepository(AppDatabase db) {
         mScoreDao = db.scoreDao();
         mStudentDao = db.studentDao();
     }
 
     public DataRepository(Context context) {
-        this(context, AppDatabase.getDatabase(context));
+        this(AppDatabase.getDatabase(context));
     }
 
     public AsyncTask insertScore(Score score) {
