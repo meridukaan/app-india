@@ -6,13 +6,16 @@ import android.os.AsyncTask;
 public class DataRepository {
     private ScoreDao mScoreDao;
 
-    public DataRepository(Context context) {
-        AppDatabase db = AppDatabase.getDatabase(context);
+    public DataRepository(Context context, AppDatabase db) {
         mScoreDao = db.scoreDao();
     }
 
-    public void insertScore(Score score) {
-        new insertScoreTask(mScoreDao).execute(score);
+    public DataRepository(Context context) {
+        this(context, AppDatabase.getDatabase(context));
+    }
+
+    public AsyncTask<Score, Void, Void> insertScore(Score score) {
+        return new insertScoreTask(mScoreDao).execute(score);
     }
 
     private static class insertScoreTask extends AsyncTask<Score, Void, Void> {
