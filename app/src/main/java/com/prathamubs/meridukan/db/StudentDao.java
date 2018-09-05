@@ -1,5 +1,6 @@
 package com.prathamubs.meridukan.db;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -13,5 +14,5 @@ public interface StudentDao extends Insertable<Student> {
     void insert(Student student);
 
     @Query("SELECT * from Student")
-    List<Student> getAll();
+    LiveData<List<Student>> getAll();
 }

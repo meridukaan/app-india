@@ -1,7 +1,10 @@
 package com.prathamubs.meridukan.db;
 
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
+
+import java.util.List;
 
 public class DataRepository {
     private ScoreDao mScoreDao;
@@ -38,4 +41,9 @@ public class DataRepository {
             return null;
         }
     }
+
+    public LiveData<List<Student>> getStudents() {
+        return mStudentDao.getAll();
+    }
+
 }
