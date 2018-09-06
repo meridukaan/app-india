@@ -27,6 +27,7 @@ public class WebAppInterface {
 
     private final static DateFormat DATE_TIME_FORMAT = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
     private final static String SELECTED_STUDENT_KEY = "SelectedStudent";
+    private final static String SELECTED_LANGUAGE_KEY = "SelectedLanguage";
 
     LiveData<List<Student>> mStudentsLiveData;
 
@@ -91,6 +92,18 @@ public class WebAppInterface {
     public void saveLastSelectedStudent(String studentId) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(SELECTED_STUDENT_KEY, studentId);
+        editor.apply();
+    }
+
+    @JavascriptInterface
+    public String getLastSelectedLanguage() {
+        return mSharedPreferences.getString(SELECTED_LANGUAGE_KEY, "");
+    }
+
+    @JavascriptInterface
+    public void saveLastSelectedLanguage(String language) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(SELECTED_LANGUAGE_KEY, language);
         editor.apply();
     }
 
