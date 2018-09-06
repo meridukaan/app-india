@@ -67,7 +67,7 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
-    public void storeStudent(String firstName, String middleName, String lastName, int age, int cls,
+    public void addStudent(String firstName, String middleName, String lastName, int age, int cls,
                              String gender) {
         Student student = new Student();
         student.StudentID = UUID.randomUUID().toString();
@@ -88,7 +88,7 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
-    public void storeLastSelectedStudent(String studentId) {
+    public void saveLastSelectedStudent(String studentId) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(SELECTED_STUDENT_KEY, studentId);
         editor.apply();
