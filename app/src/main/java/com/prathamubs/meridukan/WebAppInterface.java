@@ -2,6 +2,8 @@ package com.prathamubs.meridukan;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.webkit.JavascriptInterface;
 
@@ -21,20 +23,25 @@ public class WebAppInterface {
     Context mContext;
     DataRepository mRepository;
     String mDeviceId;
+    SharedPreferences mSharedPreferences;
 
-    private final DateFormat dateTimeFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
+    private final static DateFormat DATE_TIME_FORMAT = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
+    private final static String SELECTED_STUDENT_KEY = "SelectedStudent";
 
     LiveData<List<Student>> mStudentsLiveData;
 
     WebAppInterface(Context context) {
         mContext = context;
+
         mRepository = new DataRepository(context);
+        mStudentsLiveData = mRepository.getStudents();
+
         mDeviceId = Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
         if (mDeviceId == null) {
             mDeviceId = "0000";
         }
 
-        mStudentsLiveData = mRepository.getStudents();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     @JavascriptInterface
@@ -75,7 +82,19 @@ public class WebAppInterface {
         mRepository.insertStudent(student);
     }
 
+    @JavascriptInterface
+    public String getLastSelectedStudent() {
+        return mSharedPreferences.getString(SELECTED_STUDENT_KEY, "");
+    }
+
+    @JavascriptInterface
+    public void storeLastSelectedStudent(String studentId) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(SELECTED_STUDENT_KEY, studentId);
+        editor.apply();
+    }
+
     private String currentTime() {
-        return dateTimeFormat.format(Calendar.getInstance().getTime());
+        return DATE_TIME_FORMAT.format(Calendar.getInstance().getTime());
     }
 }
