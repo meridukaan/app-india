@@ -26,9 +26,9 @@ public class WebAppInterface {
     String mDeviceId;
     SharedPreferences mSharedPreferences;
 
-    private final static String TAG = WebAppInterface.class.getName();
-    private final static String SELECTED_STUDENT_KEY = "SelectedStudent";
-    private final static String SELECTED_LANGUAGE_KEY = "SelectedLanguage";
+    private static final String TAG = WebAppInterface.class.getName();
+    private static final String SELECTED_STUDENT_KEY = "SelectedStudent";
+    private static final String SELECTED_LANGUAGE_KEY = "SelectedLanguage";
 
     AsyncTask<?, ?, List<Student>> mStudentsQueryTask;
 

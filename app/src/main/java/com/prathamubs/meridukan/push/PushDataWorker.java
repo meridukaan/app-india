@@ -1,8 +1,10 @@
 package com.prathamubs.meridukan.push;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -18,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,9 +30,11 @@ import androidx.work.Worker;
 public class PushDataWorker extends Worker {
 
     private static final String TAG = PushDataWorker.class.getName();
+    private static final String LAST_SYNC_DATE_KEY = "LastSync";
 
     private DataRepository mRepository;
     private String mDeviceId;
+    private SharedPreferences mSharedPreferences;
 
     private void init() {
         if (mRepository == null) {
@@ -38,6 +44,8 @@ public class PushDataWorker extends Worker {
             if (mDeviceId == null) {
                 mDeviceId = "0000";
             }
+
+            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         }
     }
 
@@ -46,8 +54,10 @@ public class PushDataWorker extends Worker {
     public Result doWork() {
         init();
         try {
-            JSONArray scores = toJson(mRepository.getScores());
-            JSONArray students = toJson(mRepository.getStudents());
+            long lastSyncTime = mSharedPreferences.getLong(LAST_SYNC_DATE_KEY, 0);
+            Date lastSync = new Date(lastSyncTime);
+            JSONArray scores = toJson(mRepository.getScoresModifiedAfter(lastSync));
+            JSONArray students = toJson(mRepository.getStudentsModifiedAfter(lastSync));
 
             if (scores.length() == 0 && students.length() == 0) {
                 Log.i(TAG, "No data to be sent");
@@ -77,6 +87,9 @@ public class PushDataWorker extends Worker {
             Log.e(TAG, "Error occurred in uploading data", e);
             return Result.FAILURE;
         }
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putLong(LAST_SYNC_DATE_KEY, Calendar.getInstance().getTimeInMillis());
+        editor.commit();
         return Result.SUCCESS;
     }
 

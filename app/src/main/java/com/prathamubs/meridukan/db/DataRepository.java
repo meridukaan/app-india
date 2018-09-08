@@ -3,6 +3,7 @@ package com.prathamubs.meridukan.db;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.util.Date;
 import java.util.List;
 
 public class DataRepository {
@@ -59,11 +60,11 @@ public class DataRepository {
         return new queryTask(mStudentDao).execute();
     }
 
-    public List<Student> getStudents() {
-        return mStudentDao.getAll();
+    public List<Student> getStudentsModifiedAfter(Date date) {
+        return mStudentDao.getModifiedAfter(date);
     }
 
-    public List<Score> getScores() {
-        return mScoreDao.getAll();
+    public List<Score> getScoresModifiedAfter(Date date) {
+        return mScoreDao.getModifiedAfter(date);
     }
 }
