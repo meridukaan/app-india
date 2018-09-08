@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.webkit.JavascriptInterface;
 
+import com.prathamubs.meridukan.db.Converters;
 import com.prathamubs.meridukan.db.DataRepository;
 import com.prathamubs.meridukan.db.Score;
 import com.prathamubs.meridukan.db.Student;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -51,9 +53,10 @@ public class WebAppInterface {
         // TODO confirm significance with Pratham team and populate accordingly
         String sessionId = "sid";
         String groupId = "";
-        String endTime = currentTime();
+        Date endDateTime = Calendar.getInstance().getTime();
+        Date startDateTime = Converters.dateFromString(startTime);
         Score score = new Score(sessionId, groupId, mDeviceId, studentId, questionId, scorefromGame,
-                totalMarks, startTime, endTime, level, label);
+                totalMarks, startDateTime, endDateTime, level, label);
         mRepository.insertScore(score);
     }
 
@@ -79,7 +82,7 @@ public class WebAppInterface {
         student.Age = age;
         student.Class = cls;
         student.Gender = gender;
-        student.UpdatedDate = student.CreatedOn = currentTime();
+        student.UpdatedDate = student.CreatedOn = Calendar.getInstance().getTime();
         student.appName = mContext.getString(R.string.app_name);
         mRepository.insertStudent(student);
     }
@@ -108,7 +111,4 @@ public class WebAppInterface {
         editor.apply();
     }
 
-    private String currentTime() {
-        return DATE_TIME_FORMAT.format(Calendar.getInstance().getTime());
-    }
 }

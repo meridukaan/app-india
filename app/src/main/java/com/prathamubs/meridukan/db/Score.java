@@ -5,6 +5,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.support.annotation.NonNull;
 
+import java.util.Date;
+
 @Entity(tableName = "Scores", primaryKeys =
         {"SessionID", "DeviceID", "ResourceID", "QuestionID", "StartDateTime"})
 public class Score {
@@ -23,14 +25,14 @@ public class Score {
     @NonNull
     public int TotalMarks;
     @NonNull
-    public String StartDateTime;
-    public String EndDateTime;
+    public Date StartDateTime;
+    public Date EndDateTime;
     public int Level = 1;
     public String Label;
 
     public Score(String SessionID, String GroupID, String DeviceID, String ResourceID,
-                 int QuestionID, int ScoredMarks, int TotalMarks, String StartDateTime,
-                 String EndDateTime, String Label) {
+                 int QuestionID, int ScoredMarks, int TotalMarks, Date StartDateTime,
+                 Date EndDateTime, String Label) {
         this.SessionID = SessionID;
         this.GroupID = GroupID;
         this.DeviceID = DeviceID;
@@ -45,8 +47,8 @@ public class Score {
 
     @Ignore
     public Score(String SessionID, String GroupID, String DeviceID, String ResourceID,
-                 int QuestionID, int ScoredMarks, int TotalMarks, String StartDateTime,
-                 String EndDateTime, int Level, String Label) {
+                 int QuestionID, int ScoredMarks, int TotalMarks, Date StartDateTime,
+                 Date EndDateTime, int Level, String Label) {
         this(SessionID, GroupID, DeviceID, ResourceID, QuestionID, ScoredMarks, TotalMarks,
                 StartDateTime, EndDateTime, Label);
         this.Level = Level;

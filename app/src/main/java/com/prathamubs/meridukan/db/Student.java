@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import com.prathamubs.meridukan.BuildConfig;
 import com.prathamubs.meridukan.R;
 
+import java.util.Calendar;
+import java.util.Date;
+
 @Entity
 public class Student {
     @PrimaryKey @NonNull
@@ -16,16 +19,16 @@ public class Student {
     public String LastName;
     public int Age;
     public int Class;
-    public String UpdatedDate;
+    public Date UpdatedDate;
     public String Gender;
     public String GroupID = "";
     public String CreatedBy = "";
     public boolean NewFlag = true;
-    public String StudentUID = ""; // TODO confirm value
+    public String StudentUID; // TODO confirm value
     public boolean IsSelected = false;
     public String sharedBy = "";
-    public String SharedAtDateTime = "";
+    public Date SharedAtDateTime;
     public String appVersion = BuildConfig.VERSION_NAME;
     public String appName;
-    public String CreatedOn;
+    public Date CreatedOn;
 }
