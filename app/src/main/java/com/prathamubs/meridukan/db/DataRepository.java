@@ -46,4 +46,7 @@ public class DataRepository {
         return mStudentDao.getAll();
     }
 
+    public List<Score> getScores() {
+        return mScoreDao.getAll();
+    }
 }
