@@ -50,7 +50,7 @@ public class WebAppInterface {
                          int level, String startTime, String label) {
         // TODO confirm significance with Pratham team and populate accordingly
         String sessionId = "sid";
-        String groupId = "gid";
+        String groupId = "";
         String endTime = currentTime();
         Score score = new Score(sessionId, groupId, mDeviceId, studentId, questionId, scorefromGame,
                 totalMarks, startTime, endTime, level, label);
