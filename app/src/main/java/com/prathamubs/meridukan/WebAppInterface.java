@@ -1,10 +1,11 @@
 package com.prathamubs.meridukan;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 
 import com.prathamubs.meridukan.db.Converters;
@@ -12,14 +13,12 @@ import com.prathamubs.meridukan.db.DataRepository;
 import com.prathamubs.meridukan.db.Score;
 import com.prathamubs.meridukan.db.Student;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 public class WebAppInterface {
     Context mContext;
@@ -27,17 +26,17 @@ public class WebAppInterface {
     String mDeviceId;
     SharedPreferences mSharedPreferences;
 
-    private final static DateFormat DATE_TIME_FORMAT = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
+    private final static String TAG = WebAppInterface.class.getName();
     private final static String SELECTED_STUDENT_KEY = "SelectedStudent";
     private final static String SELECTED_LANGUAGE_KEY = "SelectedLanguage";
 
-    LiveData<List<Student>> mStudentsLiveData;
+    AsyncTask<?, ?, List<Student>> mStudentsQueryTask;
 
     WebAppInterface(Context context) {
         mContext = context;
 
         mRepository = new DataRepository(context);
-        mStudentsLiveData = mRepository.getStudents();
+        mStudentsQueryTask = mRepository.getStudentsAsync();
 
         mDeviceId = Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
         if (mDeviceId == null) {
@@ -67,7 +66,14 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public List<Student> getStoredStudentList() {
-        List<Student> students = mStudentsLiveData.getValue();
+        List<Student> students = null;
+        try {
+            students = mStudentsQueryTask.get();
+        } catch (ExecutionException e) {
+            Log.e(TAG, "Error getting students", e);
+        } catch (InterruptedException e) {
+            Log.w(TAG, "Error getting students", e);
+        }
         return students != null ? students : new ArrayList();
     }
 

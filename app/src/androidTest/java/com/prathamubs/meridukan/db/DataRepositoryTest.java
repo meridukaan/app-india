@@ -76,7 +76,7 @@ public class DataRepositoryTest {
         Student student = new Student();
         student.StudentID = "xxx";
         repository.insertStudent(student).get();
-        List<Student> students = database.studentDao().getAll().getValue();
+        List<Student> students = database.studentDao().getAll();
         assertThat(students.size(), is(equalTo(1)));
         assertThat(students.get(0).StudentID, is(equalTo("xxx")));
         assertThat(students.get(0).StudentUID, is(equalTo(null)));

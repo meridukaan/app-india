@@ -47,7 +47,7 @@ public class PushDataWorker extends Worker {
         init();
         try {
             JSONArray scores = toJson(mRepository.getScores());
-            JSONArray students = toJson(mRepository.getStudents().getValue());
+            JSONArray students = toJson(mRepository.getStudents());
 
             if (scores.length() == 0 && students.length() == 0) {
                 Log.i(TAG, "No data to be sent");

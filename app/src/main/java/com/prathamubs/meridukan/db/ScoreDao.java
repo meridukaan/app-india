@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Dao
-public interface ScoreDao extends Insertable<Score> {
+public interface ScoreDao extends DataSource<Score> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Score score);
 

@@ -1,6 +1,5 @@
 package com.prathamubs.meridukan.db;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -29,9 +28,9 @@ public class DataRepository {
 
     private static class insertTask<T> extends AsyncTask<T, Void, Void> {
 
-        private final Insertable<T> mAsyncTaskDao;
+        private final DataSource<T> mAsyncTaskDao;
 
-        private insertTask(Insertable<T> dao) {
+        private insertTask(DataSource<T> dao) {
             mAsyncTaskDao = dao;
         }
 
@@ -42,7 +41,25 @@ public class DataRepository {
         }
     }
 
-    public LiveData<List<Student>> getStudents() {
+    public static class queryTask<T> extends AsyncTask<Void, Void, List<T>> {
+
+        private final DataSource<T> mAsyncTaskDao;
+
+        private queryTask(DataSource<T> dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected List<T> doInBackground(final Void... params) {
+            return mAsyncTaskDao.getAll();
+        }
+    }
+
+    public AsyncTask<Void, Void, List<Student>> getStudentsAsync() {
+        return new queryTask(mStudentDao).execute();
+    }
+
+    public List<Student> getStudents() {
         return mStudentDao.getAll();
     }
 
