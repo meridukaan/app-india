@@ -64,7 +64,8 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public List<Student> getStoredStudentList() {
-        return mStudentsLiveData.getValue();
+        List<Student> students = mStudentsLiveData.getValue();
+        return students != null ? students : new ArrayList();
     }
 
     @JavascriptInterface
