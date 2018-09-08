@@ -10,66 +10,45 @@ import android.support.annotation.NonNull;
 public class Score {
 
     @NonNull
-    @ColumnInfo(name = "SessionID")
-    public String sessionId;
-
-    @ColumnInfo(name = "GroupID")
-    public String groupId;
-
+    public String SessionID;
+    public String GroupID;
     @NonNull
-    @ColumnInfo(name = "DeviceID")
-    public String deviceId;
-
+    public String DeviceID;
     @NonNull
-    @ColumnInfo(name = "ResourceID")
-    public String resourceId;
-
+    public String ResourceID;
     @NonNull
-    @ColumnInfo(name = "QuestionID")
-    public int questionId;
-
+    public int QuestionID;
     @NonNull
-    @ColumnInfo(name = "ScoredMarks")
-    public int scoredMarks;
-
+    public int ScoredMarks;
     @NonNull
-    @ColumnInfo(name = "TotalMarks")
-    public int totalMarks;
-
+    public int TotalMarks;
     @NonNull
-    @ColumnInfo(name = "StartDateTime")
-    public String startDateTime;
+    public String StartDateTime;
+    public String EndDateTime;
+    public int Level = 1;
+    public String Label;
 
-    @ColumnInfo(name = "EndDateTime")
-    public String endDateTime;
-
-    @ColumnInfo(name = "Level")
-    public int level = 1;
-
-    @ColumnInfo(name = "Label")
-    public String label;
-
-    public Score(String sessionId, String groupId, String deviceId, String resourceId,
-                 int questionId, int scoredMarks, int totalMarks, String startDateTime,
-                 String endDateTime, String label) {
-        this.sessionId = sessionId;
-        this.groupId = groupId;
-        this.deviceId = deviceId;
-        this.resourceId = resourceId;
-        this.questionId = questionId;
-        this.scoredMarks = scoredMarks;
-        this.totalMarks = totalMarks;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-        this.label = label;
+    public Score(String SessionID, String GroupID, String DeviceID, String ResourceID,
+                 int QuestionID, int ScoredMarks, int TotalMarks, String StartDateTime,
+                 String EndDateTime, String Label) {
+        this.SessionID = SessionID;
+        this.GroupID = GroupID;
+        this.DeviceID = DeviceID;
+        this.ResourceID = ResourceID;
+        this.QuestionID = QuestionID;
+        this.ScoredMarks = ScoredMarks;
+        this.TotalMarks = TotalMarks;
+        this.StartDateTime = StartDateTime;
+        this.EndDateTime = EndDateTime;
+        this.Label = Label;
     }
 
     @Ignore
-    public Score(String sessionId, String groupId, String deviceId, String resourceId,
-                 int questionId, int scoredMarks, int totalMarks, String startDateTime,
-                 String endDateTime, int level, String label) {
-        this(sessionId, groupId, deviceId, resourceId, questionId, scoredMarks, totalMarks,
-                startDateTime, endDateTime, label);
-        this.level = level;
+    public Score(String SessionID, String GroupID, String DeviceID, String ResourceID,
+                 int QuestionID, int ScoredMarks, int TotalMarks, String StartDateTime,
+                 String EndDateTime, int Level, String Label) {
+        this(SessionID, GroupID, DeviceID, ResourceID, QuestionID, ScoredMarks, TotalMarks,
+                StartDateTime, EndDateTime, Label);
+        this.Level = Level;
     }
 }

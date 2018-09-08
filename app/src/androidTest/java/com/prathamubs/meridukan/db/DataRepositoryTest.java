@@ -44,9 +44,9 @@ public class DataRepositoryTest {
         repository.insertScore(score).get();
         List<Score> scores = database.scoreDao().getAll();
         assertThat(scores.size(), is(equalTo(1)));
-        assertThat(scores.get(0).sessionId, is(equalTo(score.sessionId)));
-        assertThat(scores.get(0).totalMarks, is(equalTo(score.totalMarks)));
-        assertThat(scores.get(0).label, is(equalTo(score.label)));
+        assertThat(scores.get(0).SessionID, is(equalTo(score.SessionID)));
+        assertThat(scores.get(0).TotalMarks, is(equalTo(score.TotalMarks)));
+        assertThat(scores.get(0).Label, is(equalTo(score.Label)));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class DataRepositoryTest {
         Student student = new Student();
         student.StudentID = "xxx";
         repository.insertStudent(student).get();
-        List<Student> students = database.studentDao().getAll();
+        List<Student> students = database.studentDao().getAll().getValue();
         assertThat(students.size(), is(equalTo(1)));
         assertThat(students.get(0).StudentID, is(equalTo("xxx")));
         assertThat(students.get(0).StudentUID, is(equalTo(null)));
