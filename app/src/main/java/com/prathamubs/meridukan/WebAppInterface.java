@@ -21,16 +21,17 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class WebAppInterface {
-    Context mContext;
-    DataRepository mRepository;
-    String mDeviceId;
-    SharedPreferences mSharedPreferences;
+    private Context mContext;
+    private DataRepository mRepository;
+    private String mDeviceId;
+    private SharedPreferences mSharedPreferences;
 
     private static final String TAG = WebAppInterface.class.getName();
     private static final String SELECTED_STUDENT_KEY = "SelectedStudent";
     private static final String SELECTED_LANGUAGE_KEY = "SelectedLanguage";
 
-    AsyncTask<?, ?, List<Student>> mStudentsQueryTask;
+    private AsyncTask<?, ?, List<Student>> mStudentsQueryTask;
+    private String mSessionId = null;
 
     WebAppInterface(Context context) {
         mContext = context;
@@ -49,8 +50,10 @@ public class WebAppInterface {
     @JavascriptInterface
     public void addScore(String studentId, int questionId, int scorefromGame, int totalMarks,
                          int level, String startTime, String label) {
-        // TODO confirm significance with Pratham team and populate accordingly
-        String sessionId = "sid";
+        if (mSessionId == null) {
+            startSession();
+        }
+        String sessionId = mSessionId;
         String groupId = "";
         Date endDateTime = Calendar.getInstance().getTime();
         Date startDateTime = Converters.dateFromString(startTime);
@@ -100,6 +103,7 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public void saveLastSelectedStudent(String studentId) {
+        startSession();
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(SELECTED_STUDENT_KEY, studentId);
         editor.apply();
@@ -115,6 +119,18 @@ public class WebAppInterface {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(SELECTED_LANGUAGE_KEY, language);
         editor.apply();
+    }
+
+    @JavascriptInterface
+    public void startSession() {
+        mSessionId = UUID.randomUUID().toString();
+        addScore(getLastSelectedStudent(), 0, 0, 0, 0,
+                Converters.dateToString(Calendar.getInstance().getTime()), "");
+    }
+
+    @JavascriptInterface
+    public void endSession() {
+        mSessionId = null;
     }
 
 }
