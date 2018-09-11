@@ -24,7 +24,7 @@ public class Student {
     public String GroupID = "";
     public String CreatedBy = "";
     public boolean NewFlag = true;
-    public String StudentUID; // TODO confirm value
+    public String StudentUID = "";
     public boolean IsSelected = false;
     public String sharedBy = "";
     public Date SharedAtDateTime;
