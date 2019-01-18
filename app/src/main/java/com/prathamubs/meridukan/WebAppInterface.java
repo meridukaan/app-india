@@ -48,6 +48,11 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
+    public boolean isOnlineVersion() {
+        return true;
+    }
+
+    @JavascriptInterface
     public void addScore(String studentId, int questionId, int scorefromGame, int totalMarks,
                          int level, String startTime, String label) {
         if (mSessionId == null) {
