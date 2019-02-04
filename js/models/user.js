@@ -66,7 +66,7 @@ class User{
         this.difficultyLevel=difficultyLevel;
     }
     setBankBalance(bankBalance){
-        this.bankBalance=bankBalance;
+        this.bankBalance=Math.round(bankBalance);
     }
     getDifficultyLevel()
     {
@@ -82,11 +82,11 @@ class User{
     }
 
     setCredit(credit){
-        this.credit=credit;
+        this.credit=Math.round(credit);
     }
     
     setCreditLimit(creditLimit){
-        this.creditLimit=creditLimit;
+        this.creditLimit=Math.round(creditLimit);
     }
 
     getCredit(){
@@ -97,7 +97,10 @@ class User{
     }
     setInventoryScore(inventoryScore)
     {
-        this.inventoryScore=parseFloat(inventoryScore).toFixed(2);
+        if(inventoryScore < 0) {
+            inventoryScore = 0;
+        }
+        this.inventoryScore=Math.round(inventoryScore);
     }
 
     getInventoryScore()
@@ -127,7 +130,7 @@ class User{
     }
 
     setSumAssured(sum){
-      this.sumAssured = sum;
+      this.sumAssured = Math.round(sum);
     }
 
     getSumAssured(){
@@ -178,7 +181,8 @@ class User{
     }
 
     copyCurrentSummaryToLastWeek() {
-        this.setLastWeekSummary(this.getplayerScore(), this.getBankBalance(), this.getReputationPts(), this.getCredit(), this.getAdvantageCardNumber());
+        this.setLastWeekSummary(this.getplayerScore(), this.getBankBalance(), this.getReputationPts(), this.getCredit(), this.getAdvantageCardNumber(), this.getInventoryScore());
+
     }
 
     setOpenWeekSummary(openWeekSummary) {
@@ -265,12 +269,20 @@ class User{
         return this.numberOfWildCard;
     }
 
-    setLastWeekSummary(cash, bankBalance, reputationPts, credit, advantageCard) {
+    setPaymentReminderOpen(open) {
+        this.paymentReminderOpen = open;
+    }
+
+    getPaymentReminderOpen() {
+        return this.paymentReminderOpen;
+    }
+    setLastWeekSummary(cash, bankBalance, reputationPts, credit, advantageCard, inventoryScore) {
         this.lastWeekScore = cash;
         this.lastWeekBankBalance = bankBalance;
         this.lastWeekReputationPts = reputationPts;
         this.lastWeekCredit = credit;
         this.lastWeekAdvantageCard = advantageCard;
+        this.lastWeekInventoryScore = inventoryScore;
     }
 
     getLastWeekPlayerScore() {
@@ -291,6 +303,10 @@ class User{
 
     getLastWeekAdvantageCardNumber() {
         return this.lastWeekAdvantageCard;
+    }
+
+    getLastWeekInventoryScore() {
+        return this.lastWeekInventoryScore;
     }
 getScenario(category,playerChance)
     {

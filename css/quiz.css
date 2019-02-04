@@ -1,31 +1,28 @@
 #quiz{
 	border: 2px solid black;
 	background-image: url('../images/background.png');
-	height: auto;
-	width: 80%;	
-	margin: 3% 6%;
-	padding: 1%;
+	height: 100%;
+	width: 100%;	
 	overflow: hidden;
 }
 
 #quizTitle{
-	height: 10%;
 	width: 100%;
 	margin-bottom: 5%;
 }
 
 #quizEmoji{
 	position: absolute;
-	height: 8%;
-	width: 6%;
+	height: 13%;
+	width: 7%;
 	background: url('../images/quiz.png') no-repeat;
   	background-size:contain;
 }
 
 #score{
 	position: absolute;
-	margin-top: 2%;
-	right: 20%;
+	margin-top: 3%;
+	right: 17%;
 	font-weight: bold;
 	color: black;
 	background:url('../images/buttonsmedium.png');
@@ -34,7 +31,7 @@
 
 #playerName{
 	position: absolute;
-	right: 12%;
+	right: 0%;
 	font-size: 1.2vmax;
 	color: black;
 	background-color: #65c0df;
@@ -42,32 +39,38 @@
 }
 #quizHeading{
 	position: absolute;
-	margin: 0 0 0 5%;
-	height: 6%;
-	width: 5%;
-    padding: 0.7% 1%;
-    color: white;
+	margin: 0.5% 0 0 7%;
+    padding: 0.2% 1%;
+	font-size: 2.5vmax;
 	text-transform: uppercase;
 	text-align: center;
-	font-size: 3vmax;
-	font-weight: bold;
-	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+	color: white;
+	font-weight: 600;
+	font-family: 'Open Sans', "Helvetica Rounded", Arial, sans-serif;
+	background: url('../images/quizstrip.png');
+	background-size: 100% 100%;
 }
 #questionHeading{
 	margin-top: 3%;
  	text-align: center;
 }
 
-#question_answer{
+#question_answer_background{
 	height: auto;
 	overflow: hidden;
-	width: 80%;
+	width: 70%;
 	background-color: #ffffff;
 	padding: 1vw;
-	margin: 6% 10% 3% 10%;
-	border: 2vw solid;
-	border-image: url('../images/redBorderAlt.png') 30 round;
+	margin: 6% 10% 3% 15%;
 	font-weight: bold;
+	background-image: url('../images/redbgcommon.png');
+	background-size: 100% 100%;
+}
+
+#question_answer{
+	background-color: white;
+	margin: 0.5% 2%;
+	padding: 0.7%;
 }
 
 #answerDiv{
@@ -159,3 +162,21 @@ button[class="quizButtons"]:disabled{
 button[class="quizButtons"]:focus {outline:0;}
 
 input[class="quizButtons"]:focus {outline:0;}
+
+.quizGameLogoImage{
+	position: absolute;
+    top: 80%;
+    left: 1%;
+    width: 15vw;
+    height: 7vw;
+}
+
+.quizOptionsStyle{
+	background:url('../images/buttonlong.png'); 
+	background-size: 100% 100%;
+	border:3px solid white;
+	cursor: pointer;
+	padding: 0.4% 0% 0% 2%;
+	width: 70%;
+	margin-bottom: 0.5%;
+}
