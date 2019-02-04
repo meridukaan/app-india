@@ -33,17 +33,11 @@
 }
 
 #insuranceSelection{
-	height: auto;
-	overflow: hidden;
-	width: 70%;
-	padding: 1.4vw;
-	margin: 2% 15%;
-	margin-bottom: 3%; /*7% 15% 3% 13%;*/
+	width: 101%;
 }
 
 #insuranceTypesTitle{
-	font-size: 1.2vw;
-	font-weight: bold;
+    font-size: 2vmax;
 	text-align: center;
 }
 
@@ -81,22 +75,18 @@
 .insuranceButtons{
     background-image: url(../images/buttonMedium.png);
     background-size: 100% 100%;
-    width: 30%;
     text-align: center;
-    line-height: 185%;
     font-weight: bold;
     cursor: pointer;
+    padding: 1% 2%;
 }
 
 #buy_cancel{
-    position: absolute;
-    right: 30%;
-    width: 13%;
+    text-align: center;
 }
 
 #rightInfo{
 	font-weight: bold;
-	float:right;
 	margin: 0 1% 0 0;
 	font-size: 1vw;
 	width: 30%;

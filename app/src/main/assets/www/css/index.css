@@ -68,7 +68,7 @@ body {
     padding: 2% 3%;
     margin: auto;
     margin-top: 10%;
-    max-height: 80vh;
+    max-height: 80vmax;
     overflow: auto;
   }
 .imageContainer{
@@ -92,7 +92,7 @@ body {
 }
 #advantageCardTitle{
     left: 82%;
-    font-weight: 700;
+    font-weight: bold;
     position: absolute;
     top: 35.5%;
 }
@@ -105,7 +105,7 @@ body {
 }
 
 .payOffDebtAmountValue{
-    font-weight: 700;
+    font-weight: bold;
 }
 .payOffAmountToPayValue{
 }
@@ -128,6 +128,8 @@ width: 100%;
     color:black;
     font-weight:bold;
     padding:2%;
+    font-weight: bold;
+    padding-bottom: 5%;
 }
 
 
@@ -174,7 +176,7 @@ width: 100%;
 }
 
 .icon{
-    height:100%;
+    height:115%;
     width:100%;
 }
 .purchaseScreenButton:active {
@@ -232,7 +234,7 @@ width: 100%;
 
 /* luck template*/
 #scenario{
-    font-weight:600;
+    font-weight:bold;
     left:25%;
     right:25%;
     top:30%;
@@ -284,6 +286,7 @@ width: 100%;
     background-color:transparent;
     background-repeat: no-repeat;
     width: 45%;
+    font-weight: bold;
     
 }
 .paymentPayButton{
@@ -295,7 +298,6 @@ width: 100%;
     background-color:transparent;
     background-repeat: no-repeat;
     width: 45%;
-    margin-left: 29%;
     
 }
 .alternateMessageContainer{
@@ -313,6 +315,7 @@ width: 100%;
     background-image:url('../images/buttonmedium.png');
     background-size: 100% 100%;
     background-color:transparent;
+    font-weight: bold;
 }
 
 .wildCardButton{
@@ -331,8 +334,22 @@ width: 100%;
     padding:10px;
     font-weight:600;
     font-size:2.5vmax;
+    background-image: url(../images/luck_strip.png);
+    background-size: 100% 100%;
+    width: 15%;
 }
 
+.paymentScreenTitle{
+    position:absolute;
+    top: 4%;
+    left: 8%;
+    padding:10px;
+    font-weight:600;
+    font-size:2.5vmax;
+    background-image: url(../images/payment_strip.png);
+    background-size: 100% 100%;
+    width: 15%;
+}
 .luckIconContainer{
     width: 7%;
     height: 13%;
@@ -351,19 +368,19 @@ width: 100%;
 
 .luckHelpIcon{
     display:inline-block;
-    bottom: 1%;
-    right:1%;
+    bottom: 4%;
+    right:2%;
     position:absolute;
-    width:10%;
+    width:9%;
     height:auto;
 }
 
 .luckGameIcon{
     display:inline-block;
-    bottom:1%;
-    left:1%;
+    bottom:4%;
+    left:2%;
     position:absolute;
-    width:14%;
+    width:15%;
     height:auto;
 }
 
@@ -453,15 +470,15 @@ button:focus {outline:0;}
     margin-top: 3%;
     background-image:url(../images/buy.png);
     background-size: 100% 100%;
-    width: 7vw;
+    width: 8vw;
     height: 7vw;
     margin-left: 5%;
 }
 .purchaseTitle {
 	color: white;
 	font-size: 2.5vmax;
-	font-weight: bold;
-    background-image:url(../images/red_strip.png);
+	font-weight: 600;
+    background-image:url(../images/backgrounds_and_buttons/buy_strip.png);
     background-size: 100% 100%;
     width: 60%;
     margin-top: 10%;
@@ -533,7 +550,7 @@ button:focus {outline:0;}
 .helpBtn {
     background-image: url(../images/help-button.png);
     background-size: 100% 100%;
-    width: 40%;
+    width: 30%;
     text-align: center;
     line-height: 185%;
     font-weight: bold;
@@ -545,16 +562,46 @@ button:focus {outline:0;}
     background-image: url(../images/buttonMedium.png);
     background-size: 100% 100%;
     width: 40%;
+    height: 48%;
     text-align: center;
     line-height: 185%;
     font-weight: bold;
     cursor: pointer;
     margin: auto;
     color: green;
+    padding-top: 1%;
 }
 .mainButtons {
     width: 25%;
     height: 17%;
     margin-top: 25%;
     padding-top: 1%;
+}
+.mainPurchaseDiv {
+    background-image: url(../images/background.png);
+    overflow:hidden;
+    padding-left: 0px;
+    color:black;
+}
+
+#target_cancel{
+    color: red;*/
+}
+
+.gupt_image{
+    max-width: 80%;
+    margin-left: 1%;
+    background-image: url(../images/guptaji/guptaji_front.png);
+    background-size: 100% 100%;
+    width: 15vw;
+    height: 7vw;
+}
+
+.disable-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently supported by any browser but < IE9 */
 }
