@@ -57,7 +57,7 @@ public class DataRepository {
     }
 
     public AsyncTask<Void, Void, List<Student>> getStudentsAsync() {
-        return new queryTask(mStudentDao).execute();
+        return new queryTask<>(mStudentDao).execute();
     }
 
     public List<Student> getStudentsModifiedAfter(Date date) {
