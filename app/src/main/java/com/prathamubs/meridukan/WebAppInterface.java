@@ -13,6 +13,10 @@ import com.prathamubs.meridukan.db.DataRepository;
 import com.prathamubs.meridukan.db.Score;
 import com.prathamubs.meridukan.db.Student;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -68,12 +72,7 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
-    public List<Student> getStudentList() {
-        return new ArrayList();
-    }
-
-    @JavascriptInterface
-    public List<Student> getStoredStudentList() {
+    public JSONArray getStudentList() {
         List<Student> students = null;
         try {
             students = mStudentsQueryTask.get();
@@ -82,20 +81,28 @@ public class WebAppInterface {
         } catch (InterruptedException e) {
             Log.w(TAG, "Error getting students", e);
         }
-        return students != null ? students : new ArrayList();
+        return new JSONArray(students);
     }
 
     @JavascriptInterface
-    public void addStudent(String firstName, String middleName, String lastName, int age, int cls,
-                             String gender) {
+    public void addStudents(String data) throws JSONException {
+        JSONArray json = new JSONArray(data);
+        for (int i = 0; i < json.length(); i++) {
+            addStudent(json.getString(i));
+        }
+    }
+
+    @JavascriptInterface
+    public void addStudent(String data) throws JSONException {
+        JSONObject json = new JSONObject(data);
         Student student = new Student();
         student.StudentID = UUID.randomUUID().toString();
-        student.FirstName = firstName;
-        student.MiddleName = middleName;
-        student.LastName = lastName;
-        student.Age = age;
-        student.Class = cls;
-        student.Gender = gender;
+        student.FirstName = json.optString("firstName", json.getString("name"));
+        student.MiddleName = json.optString("middleName");
+        student.LastName = json.optString("lastName");
+        student.Age = json.getInt("age");
+        student.Class = json.optInt("cls");
+        student.Gender = json.getString("gender");
         student.UpdatedDate = student.CreatedOn = Calendar.getInstance().getTime();
         student.appName = mContext.getString(R.string.app_name);
         mRepository.insertStudent(student);
