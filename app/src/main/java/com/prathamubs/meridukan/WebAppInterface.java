@@ -17,7 +17,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -72,7 +71,7 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
-    public String getStudentList() {
+    public String getStudentList() throws JSONException {
         List<Student> students = null;
         try {
             students = mStudentsQueryTask.get();
@@ -81,7 +80,15 @@ public class WebAppInterface {
         } catch (InterruptedException e) {
             Log.w(TAG, "Error getting students", e);
         }
-        return new JSONArray(students).toString();
+        JSONArray json = new JSONArray();
+        for (Student s : students) {
+            JSONObject jo = new JSONObject();
+            jo.put("name", s.getName());
+            jo.put("age", s.Age);
+            jo.put("gender", s.Gender);
+            json.put(jo);
+        }
+        return json.toString();
     }
 
     @JavascriptInterface
