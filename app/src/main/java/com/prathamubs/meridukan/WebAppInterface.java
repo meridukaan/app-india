@@ -72,7 +72,7 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
-    public JSONArray getStudentList() {
+    public String getStudentList() {
         List<Student> students = null;
         try {
             students = mStudentsQueryTask.get();
@@ -81,7 +81,7 @@ public class WebAppInterface {
         } catch (InterruptedException e) {
             Log.w(TAG, "Error getting students", e);
         }
-        return new JSONArray(students);
+        return new JSONArray(students).toString();
     }
 
     @JavascriptInterface
@@ -90,6 +90,7 @@ public class WebAppInterface {
         for (int i = 0; i < json.length(); i++) {
             addStudent(json.getString(i));
         }
+        mStudentsQueryTask = mRepository.getStudentsAsync();
     }
 
     @JavascriptInterface
