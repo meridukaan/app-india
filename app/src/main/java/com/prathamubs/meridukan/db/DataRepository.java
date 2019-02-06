@@ -20,11 +20,11 @@ public class DataRepository {
     }
 
     public AsyncTask insertScore(Score score) {
-        return new insertTask(mScoreDao).execute(score);
+        return new insertTask<>(mScoreDao).execute(score);
     }
 
     public AsyncTask insertStudent(Student student) {
-        return new insertTask(mStudentDao).execute(student);
+        return new insertTask<>(mStudentDao).execute(student);
     }
 
     private static class insertTask<T> extends AsyncTask<T, Void, Void> {
