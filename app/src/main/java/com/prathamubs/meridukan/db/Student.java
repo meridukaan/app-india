@@ -1,6 +1,7 @@
 package com.prathamubs.meridukan.db;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -31,4 +32,10 @@ public class Student {
     public String appVersion = BuildConfig.VERSION_NAME;
     public String appName;
     public Date CreatedOn;
+
+    @Ignore
+    public String getName() {
+        return FirstName + (MiddleName.isEmpty() ? "" : " " + MiddleName) +
+                (LastName.isEmpty() ? "" : " " + LastName);
+    }
 }
