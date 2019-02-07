@@ -83,9 +83,10 @@ public class WebAppInterface {
         JSONArray json = new JSONArray();
         for (Student s : students) {
             JSONObject jo = new JSONObject();
-            jo.put("name", s.getName());
-            jo.put("age", s.Age);
-            jo.put("gender", s.Gender);
+            jo.put("StudentId", s.StudentID);
+            String name = s.FirstName + (s.MiddleName.isEmpty() ? "" : " " + s.MiddleName) +
+                    (s.LastName.isEmpty() ? "" : " " + s.LastName);
+            jo.put("StudentName", name);
             json.put(jo);
         }
         return json.toString();

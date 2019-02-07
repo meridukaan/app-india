@@ -32,10 +32,4 @@ public class Student {
     public String appVersion = BuildConfig.VERSION_NAME;
     public String appName;
     public Date CreatedOn;
-
-    @Ignore
-    public String getName() {
-        return FirstName + (MiddleName.isEmpty() ? "" : " " + MiddleName) +
-                (LastName.isEmpty() ? "" : " " + LastName);
-    }
 }
