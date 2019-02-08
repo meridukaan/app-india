@@ -347,13 +347,10 @@ monopoly.storePlayerDetails=function(){
     for( i=0;i<numplayers;i++)
     {
         let user=new User();
-        if(isOffline) {
-            let res = document.getElementById("name"+i).value.split("_");
-            user.setplayerName(res[1]);
-            user.setplayerStudentId(res[0]);
-        } else {
-            user.setplayerName(document.getElementById("name"+i).value);
-        }
+        let res = document.getElementById("name"+i).value.split("_");
+        user.setplayerName(res[1]);
+        user.setplayerStudentId(res[0]);
+
 
 
         user.setplayerScore(initialPlayerCash);
@@ -686,7 +683,13 @@ monopoly.startGame=function(){
 
 
            if(ubsApp.isOfflineMode) { // is mode offline
-              ubsApp.studentArray = JSON.parse(ubsApp.studentArray);
+               try {
+                             ubsApp.studentArray = JSON.parse(ubsApp.studentArray);
+
+                    } catch(err) {
+                        console.log("Error parsing student array from andriod");
+                      ubsApp.studentArray=[];
+                    }
               monopoly.renderPageforBoard(monopoly.pages.InitialiseOfflinePlayers);
               if(ubsApp.studentArray.length < 4) {
                 for(let i = 4 ; i > ubsApp.studentArray.length; i--) {
@@ -695,7 +698,14 @@ monopoly.startGame=function(){
                 monopoly.initOfflinePlayers();
               }
            } else {
-              ubsApp.studentArray = JSON.parse(ubsApp.studentArray);
+              try {
+               ubsApp.studentArray = JSON.parse(ubsApp.studentArray);
+
+              } catch(err) {
+                                      console.log("Error parsing student array from andriod");
+
+                ubsApp.studentArray=[];
+              }
               monopoly.renderPageforBoard(monopoly.pages.InitialisePlayers);
               if(ubsApp.studentArray.length < 4) {
                   for(let i = 4 ; i > ubsApp.studentArray.length; i--) {
@@ -803,10 +813,10 @@ ubsApp.confirmEndGame=function(){
 
 
   		if(arr[highestScoringPlayer]) {
-  		  winnerName=userArray[highestScoringPlayer].getplayerName() +  " " + ubsApp.getTranslation("hasWon") + " " + ubsApp.getTranslation("guptaJiProfit") + " = " + harnamProjectedScore + " " +  ubsApp.getTranslation("yourProfit") + " = " + highestScore;
+  		  winnerName=userArray[highestScoringPlayer].getplayerName() +  " " + ubsApp.getTranslation("hasWon") + ".<br> " + ubsApp.getTranslation("guptaJiProfit") + " = " + harnamProjectedScore + " " +  ubsApp.getTranslation("yourProfit") + " = " + highestScore;
 
   		} else {
-  		     winnerName= ubsApp.getTranslation("hasHighestScoreMessage").replace("{{playerName}}" , userArray[highestScoringPlayer].getplayerName()) +  " " + ubsApp.getTranslation("guptaJiProfit") + " = " + harnamProjectedScore + " " +  ubsApp.getTranslation("yourProfit") + " = " + highestScore;
+  		     winnerName= ubsApp.getTranslation("hasHighestScoreMessage").replace("{{playerName}}" , userArray[highestScoringPlayer].getplayerName()) +  ".<br> " + ubsApp.getTranslation("guptaJiProfit") + " = " + harnamProjectedScore + " " +  ubsApp.getTranslation("yourProfit") + " = " + highestScore;
 
   		}
 
