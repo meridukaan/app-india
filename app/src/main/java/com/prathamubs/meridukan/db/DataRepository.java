@@ -27,12 +27,36 @@ public class DataRepository {
         return new insertTask<>(mStudentDao).execute(student);
     }
 
-    private static class insertTask<T> extends AsyncTask<T, Void, Void> {
+    public AsyncTask updateStudent(Student student) {
+        return new updateTask<>(mStudentDao).execute(student);
+    }
 
-        private final DataSource<T> mAsyncTaskDao;
+    public void deleteStudent(String studentId) {
+        new deleteStudent(mStudentDao).execute(studentId);
+    }
 
-        private insertTask(DataSource<T> dao) {
+    private static abstract class changeTask<T> extends AsyncTask<T, Void, Void> {
+        protected final DataSource<T> mAsyncTaskDao;
+        private changeTask(DataSource<T> dao) {
             mAsyncTaskDao = dao;
+        }
+    }
+
+    private static class updateTask<T> extends changeTask<T> {
+        private updateTask(DataSource<T> dao) {
+            super(dao);
+        }
+
+        @Override
+        protected Void doInBackground(final T... params) {
+            mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+
+    private static class insertTask<T> extends changeTask<T> {
+        private insertTask(DataSource<T> dao) {
+            super(dao);
         }
 
         @Override
@@ -42,11 +66,26 @@ public class DataRepository {
         }
     }
 
-    public static class queryTask<T> extends AsyncTask<Void, Void, List<T>> {
+    private static class deleteStudent extends AsyncTask<String, Void, List<Student>> {
+        protected final StudentDao mAsyncTaskDao;
+
+        private deleteStudent(StudentDao dao) {
+            this.mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected List<Student> doInBackground(String... params) {
+            List<Student> items = mAsyncTaskDao.findByKey(params);
+            mAsyncTaskDao.delete((Student[])items.toArray());
+            return items;
+        }
+    }
+
+    private static class queryAllTask<T> extends AsyncTask<Void, Void, List<T>> {
 
         private final DataSource<T> mAsyncTaskDao;
 
-        private queryTask(DataSource<T> dao) {
+        private queryAllTask(DataSource<T> dao) {
             mAsyncTaskDao = dao;
         }
 
@@ -57,7 +96,7 @@ public class DataRepository {
     }
 
     public AsyncTask<Void, Void, List<Student>> getStudentsAsync() {
-        return new queryTask<>(mStudentDao).execute();
+        return new queryAllTask<>(mStudentDao).execute();
     }
 
     public List<Student> getStudentsModifiedAfter(Date date) {

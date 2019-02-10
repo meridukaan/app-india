@@ -87,6 +87,8 @@ public class WebAppInterface {
             String name = s.FirstName + (s.MiddleName.isEmpty() ? "" : " " + s.MiddleName) +
                     (s.LastName.isEmpty() ? "" : " " + s.LastName);
             jo.put("StudentName", name);
+            jo.put("StudentAge", s.Age);
+            jo.put("StudentGender", s.Gender);
             json.put(jo);
         }
         return json.toString();
@@ -115,6 +117,27 @@ public class WebAppInterface {
         student.UpdatedDate = student.CreatedOn = Calendar.getInstance().getTime();
         student.appName = mContext.getString(R.string.app_name);
         mRepository.insertStudent(student);
+    }
+
+    @JavascriptInterface
+    public void updateStudent(String data) throws JSONException {
+        JSONObject json = new JSONObject(data);
+        Student student = new Student();
+        student.StudentID = json.getString("StudentID");
+        student.FirstName = json.optString("firstName", json.getString("StudentName"));
+        student.MiddleName = json.optString("middleName");
+        student.LastName = json.optString("lastName");
+        student.Age = json.getInt("StudentAge");
+        student.Class = json.optInt("cls");
+        student.Gender = json.getString("StudentGender");
+        student.UpdatedDate = student.CreatedOn = Calendar.getInstance().getTime();
+        student.appName = mContext.getString(R.string.app_name);
+        mRepository.updateStudent(student);
+    }
+
+    @JavascriptInterface
+    public void deleteStudent(String studentId) {
+        mRepository.deleteStudent(studentId);
     }
 
     @JavascriptInterface
