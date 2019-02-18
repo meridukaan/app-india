@@ -1263,6 +1263,7 @@ ubsApp.translation={
         "decisionLoseRptPts":"यह एक अच्छा फैसला नहीं था। आप {0} प्रतिष्ठा अंक खो गए!",
 	
 	"endGameConfirm" : "क्या आप वाकई खेल खत्म करना चाहते हैं?",
+	sssssssssssssssssss---------sssssssssssssssssssss : sdsdsnnnnnnnnnnn-----------nsdsdsdsdsdaPalyae d;
 	"ENDGAME":"अंत खेल",
 	"convertReputationPointsTitle" :"कन्वर्ट प्रतिष्ठान अंक",
         "convertReputationMessage" : "कार्ड को उन्नत करने के लिए कनवर्टर प्रतिस्थापन",
@@ -1496,4 +1497,22 @@ ubsApp.translation={
     "yourProfit" : "आपका लाभ",
     "PLAYAGAIN" : "फिर से चालू करें",
     "ADD_PLAYER" : "ADD PLAYER",
+    "PLAYER_NAME" : "PLAYER NAME",
+    "GENDER" : "GENDER",
+    "AGE" : "AGE",
+    "ADD" : "ADD",
+    "MALE" : "MALE",
+    "FEMALE" : "FEMALE",
+    "ENTER_PLAYER_NAME" : "Enter Player Name",
+    "ENTER_PLAYER_AGE" : "Enter Player Age",
+    "ENTER_PLAYER_GENDER" : "Select Player Gender",
+    "PLAYER_ADDED_HEADER" : "ADD PLAYER",
+    "PLAYER_ADDED_SUCCESSFULLY" : "Player Added Successfully !",
+    "ADD_PLAYER_TO_PLAY" : "Add player to play the game !!!",
+    "UPDATE" : "UPDATE",
+    "DELETE" : "DELETE",
+    "PLAYER_UPDATED_SUCCESSFULLY" : "Player Updated Successfully !",
+    "PLAYER_DELETED_SUCCESSFULLY" : "Player Deleted Successfully !",
+
+
 }
