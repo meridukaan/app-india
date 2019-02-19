@@ -76,7 +76,7 @@ public class DataRepository {
         @Override
         protected List<Student> doInBackground(String... params) {
             List<Student> items = mAsyncTaskDao.findByKey(params);
-            mAsyncTaskDao.delete((Student[])items.toArray());
+            mAsyncTaskDao.delete(items.toArray(new Student[items.size()]));
             return items;
         }
     }
