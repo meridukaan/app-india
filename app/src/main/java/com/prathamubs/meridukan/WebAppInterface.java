@@ -133,11 +133,13 @@ public class WebAppInterface {
         student.UpdatedDate = student.CreatedOn = Calendar.getInstance().getTime();
         student.appName = mContext.getString(R.string.app_name);
         mRepository.updateStudent(student);
+        mStudentsQueryTask = mRepository.getStudentsAsync();
     }
 
     @JavascriptInterface
     public void deleteStudent(String studentId) {
         mRepository.deleteStudent(studentId);
+        mStudentsQueryTask = mRepository.getStudentsAsync();
     }
 
     @JavascriptInterface
