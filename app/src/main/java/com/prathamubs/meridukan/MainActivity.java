@@ -1,5 +1,6 @@
 package com.prathamubs.meridukan;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
         mWebView = findViewById(R.id.activity_main_webview);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new GameWebViewClient());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            mWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        }
 
         mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
