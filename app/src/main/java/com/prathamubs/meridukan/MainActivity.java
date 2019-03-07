@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
         mWebView = findViewById(R.id.activity_main_webview);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new GameWebViewClient());
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             mWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);
         }
+        mWebView.getSettings().setDomStorageEnabled(true);
+        mWebView.setWebViewClient(new GameWebViewClient());
 
         mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
