@@ -3,7 +3,6 @@ package com.prathamubs.meridukan;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.webkit.WebView;
 
 import com.prathamubs.meridukan.push.PushDataWorker;
@@ -16,6 +15,27 @@ import androidx.work.WorkManager;
 public class MainActivity extends AppCompatActivity {
 
     private WebView mWebView;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mWebView.onPause();
+        mWebView.pauseTimers();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mWebView.resumeTimers();
+        mWebView.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mWebView.destroy();
+        mWebView = null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
