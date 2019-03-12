@@ -1,8 +1,10 @@
 package com.prathamubs.meridukan;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
@@ -177,6 +179,15 @@ public class WebAppInterface {
     @JavascriptInterface
     public void endSession() {
         mSessionId = null;
+        Activity activity = (Activity) mContext;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity.finishAndRemoveTask();
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            activity.finishAffinity();
+        } else {
+            activity.finish();
+            System.exit(0);
+        }
     }
 
 }
