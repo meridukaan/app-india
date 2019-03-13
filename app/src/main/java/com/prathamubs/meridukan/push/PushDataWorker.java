@@ -74,7 +74,10 @@ public class PushDataWorker extends Worker {
 
             Log.i(TAG, "Sending data to server @" + url);
             Log.v(TAG, requestString);
-            HttpPost.send(url, requestString);
+            if (!HttpPost.send(url, requestString)) {
+                Log.w(TAG, "Unable to send data");
+                return Result.FAILURE;
+            }
             Log.i(TAG, "Data sent");
         } catch (JSONException e) {
             Log.e(TAG, "Error occurred in creating JSON data", e);

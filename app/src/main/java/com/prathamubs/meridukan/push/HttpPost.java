@@ -9,11 +9,12 @@ import java.net.URL;
 
 public class HttpPost {
 
-    public static void send(String urlStr, String data) throws IOException {
+    public static boolean send(String urlStr, String data) throws IOException {
         URL url =  new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+        conn.setDoOutput(true);
 
         try (
                 OutputStream os = conn.getOutputStream();
@@ -22,5 +23,7 @@ public class HttpPost {
             writer.write(data);
             writer.flush();
         }
+
+        return conn.getResponseCode() == 200;
     }
 }
