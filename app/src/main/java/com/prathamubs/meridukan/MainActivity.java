@@ -1,5 +1,7 @@
 package com.prathamubs.meridukan;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -65,5 +67,19 @@ public class MainActivity extends AppCompatActivity {
                 .setConstraints(constraints)
                 .build();
         WorkManager.getInstance().enqueue(workRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.exit_msg)
+                .setCancelable(false)
+                .setPositiveButton(R.string.res_yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        MainActivity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton(R.string.res_no, null)
+                .show();
     }
 }

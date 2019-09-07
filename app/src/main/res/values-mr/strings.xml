@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">माझे दुकान</string>
+    <string name="exit_msg">आपल्याला खात्री आहे की आपण निर्गमन करू इच्छिता?</string>
+    <string name="res_no">नाही</string>
+    <string name="res_yes">होय</string>
+</resources>

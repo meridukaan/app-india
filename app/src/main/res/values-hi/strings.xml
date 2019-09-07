@@ -1,0 +1,7 @@
+<resources>
+    x`
+    <string name="app_name">मेरी दुकान</string>
+    <string name="exit_msg">क्या आप निसंदेह बाहर निकलना चाहते हैं?</string>
+    <string name="res_yes">हाँ</string>
+    <string name="res_no">नहीं</string>
+</resources>
