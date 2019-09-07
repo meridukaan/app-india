@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MeriDukan</string>
+    <string name="app_name">MeriDukaan</string>
     <string name="pratham_url" translatable="false">http://apipos.prathaminstitute.org/api/DataPush/PushUsageData</string>
     <string name="exit_msg">Are you sure you want to exit?</string>
     <string name="res_yes">Yes</string>
